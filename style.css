@@ -1,0 +1,532 @@
+/* Винарија Новак — „Црна етикета“ */
+:root{
+  --ink:#0d0c0b; --ink-2:#141210; --ink-3:#1c1916; --line:#2c2722; --line-2:#3a332c;
+  --paper:#efe5d4; --paper-2:#d9cdb9; --muted:#9c8f7e; --muted-2:#776c5f;
+  --copper:#c98b5b; --copper-hi:#ebb98e; --copper-lo:#8a5733; --copper-deep:#5e3a21;
+  --bagrina:#d6a23e; --kaberne:#a3283a; --tamjanika:#8a3a64;
+  --serif:"Cormorant Garamond", "Times New Roman", serif;
+  --sans:"Manrope", system-ui, sans-serif;
+  --block:"Oswald", "Arial Narrow", sans-serif;
+  --gut:clamp(16px, 4vw, 48px);
+  --max:1240px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-variant-numeric:lining-nums;margin:0;background:var(--ink);color:var(--paper);font:400 16px/1.7 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--copper);color:var(--ink)}
+:focus-visible{outline:2px solid var(--copper-hi);outline-offset:3px;border-radius:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+
+/* типографија */
+.kicker{font:600 12px/1.4 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--copper);display:inline-flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:28px;height:1px;background:currentColor}
+.h-display{font:500 clamp(40px,6.4vw,84px)/1.02 var(--serif);letter-spacing:-.01em;margin:.3em 0 .35em}
+.h-sec{font:500 clamp(34px,4.6vw,58px)/1.05 var(--serif);margin:.35em 0 .4em}
+.h-sec em,.h-display em{font-style:normal;color:var(--copper-hi)}
+.lead{font-size:clamp(17px,1.5vw,19px);color:var(--paper-2);max-width:56ch}
+p{margin:0 0 1em}
+.muted{color:var(--muted)}
+.foil{background:linear-gradient(100deg,var(--copper-lo) 0%,var(--copper) 22%,var(--copper-hi) 40%,#fff0dc 48%,var(--copper-hi) 56%,var(--copper) 74%,var(--copper-lo) 100%);background-size:250% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;transition:background-position 1.4s var(--ease)}
+.foil:hover,.is-in .foil{background-position:0 0}
+
+/* привремени подаци */
+.ph{border-bottom:1px dashed var(--copper-lo);cursor:help}
+.ph::after{content:"✱";font-size:.62em;vertical-align:super;color:var(--copper);margin-left:2px}
+
+/* дугмад */
+.btn{display:inline-flex;align-items:center;gap:12px;padding:15px 26px;font:600 13px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--copper);color:var(--ink);background:var(--copper);transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease)}
+.btn:hover{background:var(--copper-hi);border-color:var(--copper-hi)}
+.btn svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn.ghost{background:transparent;color:var(--paper);border-color:var(--line-2)}
+.btn.ghost:hover{border-color:var(--copper);color:var(--copper-hi)}
+
+/* заглавље */
+.top{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent}
+.top.solid{background:rgba(13,12,11,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:44px;height:44px;color:var(--copper)}
+.brand b{font:600 22px/1 var(--block);letter-spacing:.14em;color:var(--copper-hi)}
+.brand small{display:block;font:500 10px/1 var(--sans);letter-spacing:.3em;color:var(--muted);margin-top:5px;text-transform:uppercase}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a{font:500 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--paper-2);position:relative;padding:8px 0}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--copper);transition:right .35s var(--ease)}
+.nav a:hover,.nav a[aria-current]{color:var(--copper-hi)}
+.nav a:hover::after,.nav a[aria-current]::after{right:0}
+.lang{font:600 12px/1 var(--sans);letter-spacing:.14em;border:1px solid var(--line-2);padding:9px 12px;color:var(--paper-2);transition:border-color .3s,color .3s}
+.lang:hover{border-color:var(--copper);color:var(--copper-hi)}
+.burger{display:none;width:44px;height:44px;position:relative}
+.burger span{position:absolute;left:11px;right:11px;height:1px;background:var(--paper);transition:transform .35s var(--ease),opacity .2s}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:22px}.burger span:nth-child(3){top:28px}
+.nav-open .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-open .burger span:nth-child(2){opacity:0}
+.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* херој — почетна */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:120px 0 70px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 72% 55%,rgba(201,139,91,.16),transparent 70%),radial-gradient(40% 50% at 10% 100%,rgba(155,34,48,.12),transparent 70%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;width:100%}
+.hero .lead{margin-bottom:34px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px}
+.wordmark{display:flex;gap:clamp(4px,.6vw,10px);margin:22px 0 26px;font:700 clamp(64px,10.5vw,148px)/.86 var(--block);letter-spacing:.02em}
+.wordmark span{display:inline-block;padding:.06em .07em .04em;position:relative;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .2  0 0 0 0 .1  0 0 0 0 .04  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(170deg,#f0cda6 0%,#d0935f 38%,#a96d42 62%,#e6b385 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wordmark span::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.08em;background:linear-gradient(90deg,transparent,var(--copper-lo),transparent);opacity:.6}
+.wordmark span{opacity:0;transform:translateY(.35em) rotate(var(--r,0deg))}
+.ready .wordmark span{animation:stone .9s var(--ease) forwards;animation-delay:calc(var(--i)*90ms + 150ms)}
+@keyframes stone{to{opacity:1;transform:translateY(0) rotate(var(--r,0deg))}}
+
+.trio{position:relative;height:min(78vh,640px);display:flex;align-items:flex-end;justify-content:center;gap:0}
+.trio::before{content:"";position:absolute;left:50%;bottom:4%;width:120%;max-width:620px;aspect-ratio:1.1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(214,150,98,.42),rgba(201,139,91,.12) 55%,transparent 75%);pointer-events:none}
+.trio a{position:relative;display:block;width:clamp(86px,9.5vw,128px);transition:transform .6s var(--ease);margin:0 -6px}
+.trio a:nth-of-type(2){z-index:2;width:clamp(96px,10.6vw,142px)}
+.trio a svg{width:100%;height:auto;filter:drop-shadow(0 30px 30px rgba(0,0,0,.6))}
+.trio a:hover{transform:translateY(-14px)}
+.trio .tag{position:absolute;left:50%;bottom:calc(100% + 14px);transform:translate(-50%,6px);white-space:nowrap;font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--paper);opacity:0;transition:opacity .3s,transform .3s var(--ease)}
+.trio .tag i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--c)}
+.trio a:hover .tag,.trio a:focus-visible .tag{opacity:1;transform:translate(-50%,0)}
+.trio .shadow{position:absolute;left:8%;right:8%;bottom:-10px;height:30px;background:radial-gradient(closest-side,rgba(0,0,0,.8),transparent)}
+.trio a{opacity:0;transform:translateY(40px)}
+.ready .trio a{animation:rise 1.1s var(--ease) forwards}
+.ready .trio a:nth-of-type(1){animation-delay:.35s}.ready .trio a:nth-of-type(2){animation-delay:.2s}.ready .trio a:nth-of-type(3){animation-delay:.5s}
+@keyframes rise{to{opacity:1;transform:none}}
+.ready .trio a:hover{transform:translateY(-14px)}
+.seal-ring{position:absolute;width:min(88%,470px);aspect-ratio:1;left:50%;top:44%;transform:translate(-50%,-50%);color:var(--copper);opacity:.75;pointer-events:none}
+.seal-ring .ring{animation:spin 60s linear infinite;transform-origin:50% 50%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scroll-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:600 10px/1 var(--sans);letter-spacing:.3em;color:var(--muted);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-hint::after{content:"";width:1px;height:36px;background:linear-gradient(var(--copper),transparent);animation:drip 2.2s var(--ease) infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* секције */
+section{position:relative}
+.sec{padding:clamp(80px,11vw,150px) 0}
+.sec.alt{background:var(--ink-2);border-block:1px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+.sec-head .lead{margin:0}
+
+/* 100% страсти */
+.passion{text-align:center;padding:clamp(90px,12vw,170px) 0}
+.passion .big{font:700 clamp(110px,22vw,300px)/.8 var(--block);letter-spacing:-.02em;display:inline-flex;align-items:flex-start}
+.passion .big sup{font-size:.36em;margin:.12em 0 0 .06em}
+.passion q{display:block;font:500 clamp(26px,3.4vw,44px)/1.2 var(--serif);max-width:24ch;margin:30px auto 18px;quotes:"„" "“"}
+.passion cite{font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-style:normal}
+
+/* картице вина */
+.wines{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.wcard{position:relative;display:flex;flex-direction:column;background:var(--ink-3);border:1px solid var(--line);padding:34px 30px 30px;overflow:hidden;transition:border-color .4s,transform .5s var(--ease)}
+.wcard::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c)}
+.wcard::after{content:"";position:absolute;width:320px;height:320px;right:-120px;top:-120px;border-radius:50%;background:radial-gradient(closest-side,var(--c),transparent);opacity:.16;transition:opacity .5s}
+.wcard:hover{border-color:var(--line-2);transform:translateY(-6px)}
+.wcard:hover::after{opacity:.32}
+.wcard .num{font:600 12px/1 var(--sans);letter-spacing:.24em;color:var(--muted)}
+.wcard .bottle-mini{height:250px;margin:24px 0 26px;display:flex;justify-content:center}
+.wcard .bottle-mini svg{height:100%;width:auto;transition:transform .6s var(--ease)}
+.wcard:hover .bottle-mini svg{transform:translateY(-8px) rotate(-2deg)}
+.wcard h3{font:500 34px/1.05 var(--serif);margin:0 0 6px}
+.wcard .type{font:600 11px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--copper);margin-bottom:14px}
+.wcard p{color:var(--paper-2);font-size:15px;flex:1}
+.more{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--copper-hi);margin-top:10px}
+.more svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.more:hover svg,.wcard:hover .more svg{transform:translateX(5px)}
+
+/* крај */
+.land{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center}
+.land figure{margin:0;position:relative}
+.land figure svg{width:100%;height:auto;color:var(--copper)}
+.land figcaption{font:500 12px/1.5 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:40px;border-top:1px solid var(--line)}
+.facts div{padding:22px 16px 0 0}
+.facts b{display:block;font:500 40px/1 var(--serif);color:var(--copper-hi);margin-bottom:8px}
+.facts div>span{font-size:13px;color:var(--muted);line-height:1.5;display:block}
+
+/* пут вина */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);counter-reset:s;border-top:1px solid var(--line)}
+.step{padding:34px 26px 0 0;position:relative}
+.step::before{counter-increment:s;content:"0" counter(s);font:600 12px/1 var(--sans);letter-spacing:.24em;color:var(--copper)}
+.step::after{content:"";position:absolute;top:-4px;left:0;width:7px;height:7px;border-radius:50%;background:var(--copper)}
+.step svg{width:42px;height:42px;color:var(--copper-hi);margin:24px 0 18px}
+.step h3{font:500 26px/1.15 var(--serif);margin:0 0 10px}
+.step p{font-size:15px;color:var(--muted)}
+
+/* инстаграм трака */
+.ig{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;padding:46px clamp(24px,4vw,56px);border:1px solid var(--line-2);background:linear-gradient(120deg,var(--ink-3),var(--ink-2))}
+.ig h2{font:500 clamp(28px,3.4vw,42px)/1.1 var(--serif);margin:8px 0 0}
+.ig h2 a{color:var(--copper-hi)}
+
+/* подножје */
+.foot{border-top:1px solid var(--line);padding:70px 0 34px;background:var(--ink-2)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot h4{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--copper);margin:6px 0 18px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px;color:var(--paper-2)}
+.foot a:hover{color:var(--copper-hi)}
+.foot .brand{margin-bottom:18px}
+.foot-note{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted-2);letter-spacing:.04em}
+
+/* страница — заглавље */
+.phead{padding:170px 0 70px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.phead::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 80% at 85% 20%,rgba(201,139,91,.14),transparent 70%)}
+.phead .wrap{position:relative}
+.phead .h-display{max-width:14ch}
+.phead-seal{position:absolute;right:var(--gut);top:120px;width:220px;color:var(--copper);opacity:.18}
+
+/* вина — страница */
+.wine-nav{position:sticky;top:78px;z-index:30;background:rgba(13,12,11,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.wine-nav .wrap{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.wine-nav a{display:flex;align-items:center;gap:10px;padding:18px 18px;font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;border-bottom:2px solid transparent;transition:color .3s,border-color .3s}
+.wine-nav a i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.wine-nav a.on,.wine-nav a:hover{color:var(--paper);border-color:var(--c)}
+
+.cellar{display:grid;grid-template-columns:minmax(260px,.8fr) 1.2fr;gap:clamp(30px,6vw,90px)}
+.stage{position:sticky;top:150px;height:calc(100vh - 190px);max-height:720px;display:flex;align-items:center;justify-content:center}
+.stage::before{content:"";position:absolute;width:85%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,var(--glow,var(--bagrina)),transparent);opacity:.2;transition:background .8s}
+.stage .bwrap{position:relative;height:100%;aspect-ratio:120/440;max-width:100%}
+.stage .bwrap svg{position:absolute;inset:0;width:100%;height:100%;opacity:0;transform:translateY(24px) scale(.97);transition:opacity .7s var(--ease),transform .9s var(--ease);filter:drop-shadow(0 40px 40px rgba(0,0,0,.65))}
+.stage .bwrap svg.on{opacity:1;transform:none}
+.stage .meta{position:absolute;bottom:0;left:0;right:0;text-align:center;font:600 11px/1 var(--sans);letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+
+.wine{padding:90px 0;border-bottom:1px solid var(--line);scroll-margin-top:150px}
+.wine:last-child{border-bottom:0}
+.wine .inline-bottle{display:none}
+.wine .no{font:600 12px/1 var(--sans);letter-spacing:.24em;color:var(--c-text,var(--copper))}
+.wine h2{font:500 clamp(48px,6vw,80px)/1 var(--serif);margin:14px 0 10px}
+.wine .style{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--paper-2);padding:9px 14px;border:1px solid var(--line-2)}
+.wine .style i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.wine .tagline{font:500 italic clamp(22px,2.4vw,28px)/1.35 var(--serif);color:var(--copper-hi);margin:28px 0 20px;max-width:30ch}
+.wine-body{color:var(--paper-2);max-width:60ch}
+.blocks{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+.block{border:1px solid var(--line);background:var(--ink-2);padding:26px}
+.block h3{font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--copper);margin:0 0 20px}
+.scale{display:grid;grid-template-columns:110px 1fr;align-items:center;gap:12px;font-size:14px;color:var(--paper-2);margin-bottom:12px}
+.scale:last-child{margin-bottom:0}
+.dots{display:flex;gap:6px}
+.dots i{flex:1;height:6px;background:var(--line-2);border-radius:3px;position:relative;overflow:hidden}
+.dots i.f::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--copper-lo),var(--copper-hi));transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.is-in .dots i.f::after{transform:scaleX(1)}
+.dots i:nth-child(2)::after{transition-delay:.08s}.dots i:nth-child(3)::after{transition-delay:.16s}.dots i:nth-child(4)::after{transition-delay:.24s}.dots i:nth-child(5)::after{transition-delay:.32s}
+.notes{display:flex;flex-wrap:wrap;gap:8px}
+.notes span{font-size:13px;padding:7px 13px;border:1px solid var(--line-2);border-radius:40px;color:var(--paper-2)}
+.pair{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.pair li{display:flex;gap:14px;align-items:center;font-size:15px;color:var(--paper-2)}
+.pair svg{width:26px;height:26px;color:var(--copper-hi);flex:none}
+.serve{display:flex;gap:22px;align-items:center}
+.thermo{width:22px;height:120px;flex:none}
+.serve b{display:block;font:500 46px/1 var(--serif);color:var(--copper-hi)}
+.serve span{font-size:14px;color:var(--muted)}
+.tech{width:100%;border-collapse:collapse;font-size:14px}
+.tech th{text-align:left;font-weight:500;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--line);width:44%}
+.tech td{padding:9px 0;border-bottom:1px solid var(--line);color:var(--paper)}
+.tech tr:last-child th,.tech tr:last-child td{border-bottom:0}
+.photo-card{margin:40px 0 0;display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;background:var(--paper);color:var(--ink);padding:22px}
+.photo-card img{width:100%;height:auto;mix-blend-mode:multiply}
+.photo-card figcaption{font:500 22px/1.3 var(--serif)}
+.photo-card figcaption small{display:block;font:600 11px/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--copper-deep);margin-top:12px}
+
+/* фотографије (са Инстаграма винарије) */
+[data-full]{display:block;width:100%;padding:0;cursor:zoom-in;position:relative;overflow:hidden}
+[data-full] img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .6s}
+[data-full]:hover img{transform:scale(1.04)}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:250px 250px;grid-template-areas:"a b b c" "a d e c";gap:14px}
+.g{margin:0;position:relative;background:var(--ink-3);overflow:hidden}
+.g button{height:100%}
+.g img{filter:saturate(.92) contrast(1.04)}
+.g::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(transparent,rgba(13,12,11,.88));pointer-events:none}
+.g figcaption{position:absolute;left:18px;right:18px;bottom:14px;z-index:1;pointer-events:none}
+.g figcaption b{display:block;font:600 10.5px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--copper-hi);margin-bottom:6px}
+.g figcaption span{font:500 22px/1.15 var(--serif);color:var(--paper)}
+.ga{grid-area:a}.gb{grid-area:b}.gc{grid-area:c}.gd{grid-area:d}.ge{grid-area:e}
+.gb img{object-position:50% 70%}
+.gd img{object-position:50% 40%}
+.ge img{object-position:50% 70%}
+.gal-src{margin:22px 0 0;font-size:13px;color:var(--muted)}
+.gal-src a{display:inline-flex;align-items:center;gap:8px;min-height:40px}
+.gal-src a:hover{color:var(--copper-hi)}
+.gal-src svg{width:16px;height:16px;color:var(--copper)}
+
+.wine-photos{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin-top:20px;align-items:start}
+.wine-photos.one{grid-template-columns:1fr}
+.wine-photos figure{margin:0}
+.wine-photos [data-full]{height:330px;border:1px solid var(--line)}
+.wine-photos.one [data-full]{height:auto;aspect-ratio:16/9}
+.wine-photos figcaption{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.5}
+.wine-photos .cream [data-full]{background:var(--paper)}
+.wine-photos img[src*="tamjanika-boca"]{object-position:50% 12%}
+.wine-photos .cream img{object-fit:contain;mix-blend-mode:multiply;padding:14px}
+
+/* лајтбокс */
+.lb{border:0;padding:0;background:transparent;max-width:min(92vw,900px);max-height:92vh;color:var(--paper);overflow:visible}
+.lb::backdrop{background:rgba(8,7,6,.92)}
+.lb img{display:block;max-width:min(92vw,900px);max-height:80vh;width:auto;height:auto;margin:0 auto;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.lb p{margin:14px 0 0;text-align:center;font:500 20px/1.3 var(--serif);color:var(--paper-2)}
+.lb-x{position:fixed;top:14px;right:14px;width:48px;height:48px;border:1px solid var(--line-2);border-radius:50%;background:rgba(13,12,11,.8);color:var(--paper);font-size:26px;line-height:1}
+.lb-x:hover{border-color:var(--copper);color:var(--copper-hi)}
+.lb[open]{animation:fadeIn .35s var(--ease)}
+
+/* бирач */
+.picker{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,6vw,80px);align-items:start}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border:1px solid var(--line-2);font-size:15px;color:var(--paper-2);transition:border-color .3s,color .3s,background .3s}
+.chip svg{width:20px;height:20px;color:var(--copper)}
+.chip:hover{border-color:var(--copper);color:var(--paper)}
+.chip[aria-pressed="true"]{background:var(--copper);border-color:var(--copper);color:var(--ink)}
+.chip[aria-pressed="true"] svg{color:var(--ink)}
+.answer{border:1px solid var(--line-2);background:var(--ink-3);padding:34px;min-height:300px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.answer::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--c,var(--copper));transition:background .5s}
+.ans{display:grid;grid-template-columns:110px 1fr;gap:28px;align-items:center;width:100%}
+.ans[hidden],.answer .empty[hidden]{display:none}
+.answer .ab{height:240px;display:flex;justify-content:center}
+.answer .ab svg{height:100%;width:auto}
+.answer h3{font:500 38px/1.05 var(--serif);margin:6px 0 12px}
+.answer p{color:var(--paper-2);font-size:15px}
+.answer .empty{text-align:center;color:var(--muted);font:500 italic 24px/1.4 var(--serif);max-width:22ch;margin:0}
+.answer .fade{animation:fadeIn .5s var(--ease)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* контакт */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ccard{border:1px solid var(--line);background:var(--ink-2);padding:28px 24px;display:flex;flex-direction:column;gap:10px;transition:border-color .3s,transform .4s var(--ease)}
+a.ccard:hover{border-color:var(--copper);transform:translateY(-4px)}
+.ccard svg{width:28px;height:28px;color:var(--copper-hi);margin-bottom:10px}
+.ccard h3{font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--copper);margin:0}
+.ccard p{font:500 22px/1.25 var(--serif);margin:0;word-break:break-word}
+.ccard small{color:var(--muted);font-size:13px}
+.visit{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;margin-top:24px}
+.map{position:relative;border:1px solid var(--line);min-height:460px;background:var(--ink-3);overflow:hidden}
+.art-map{position:absolute;inset:0;width:100%;height:100%}
+.art-map text{font-family:var(--sans)}
+.m-country{font-size:12px;letter-spacing:.4em;fill:#4a4239;font-weight:600}
+.m-river{font:italic 500 20px var(--serif);fill:#c98b5b;letter-spacing:.06em}
+.m-town{font-size:15px;font-weight:600;fill:#efe5d4;letter-spacing:.06em}
+.m-small{font-size:12px;fill:#9c8f7e;letter-spacing:.06em}
+.m-here{font:500 26px var(--serif);fill:#ebb98e}
+.m-pulse{transform-origin:410px 296px;animation:pulse 2.6s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.8);opacity:1}100%{transform:scale(2.4);opacity:0}}
+.map .pin{position:absolute;left:12px;bottom:12px;background:var(--ink);border:1px solid var(--line-2);padding:10px 14px;font-size:13px;color:var(--paper-2)}
+.map .pin a{color:var(--copper-hi)}
+.form{border:1px solid var(--line);background:var(--ink-2);padding:clamp(24px,3vw,38px)}
+.form h2{font:500 34px/1.1 var(--serif);margin:0 0 6px}
+.form .muted{font-size:14px}
+.field{display:grid;gap:8px;margin-top:18px}
+.field label{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea,.field select{width:100%;background:var(--ink);border:1px solid var(--line-2);color:var(--paper);font:400 16px/1.5 var(--sans);padding:13px 14px;border-radius:0;transition:border-color .3s}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--copper)}
+.form .btn{margin-top:24px;width:100%;justify-content:center}
+.form .fine{font-size:12px;color:var(--muted-2);margin:14px 0 0}
+.route{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);margin-top:30px}
+.route div{padding:26px 20px 0 0}
+.route b{display:block;font:500 34px/1 var(--serif);color:var(--copper-hi)}
+.route span{font-size:14px;color:var(--muted)}
+
+/* појављивање */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.is-in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+.shot .rv{opacity:1;transform:none;transition:none}
+.shot .wordmark span,.shot .trio a{animation:none;opacity:1;transform:rotate(var(--r,0deg))}
+.shot .trio a{transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+
+/* одзивност */
+@media (max-width:1020px){
+  .wines{grid-template-columns:1fr;max-width:560px;margin:0 auto}
+  .wcard{display:grid;grid-template-columns:120px 1fr;column-gap:24px}
+  .wcard .num{grid-column:1/-1}
+  .wcard .bottle-mini{grid-row:2/6;height:220px;margin:18px 0 0}
+  .wcard h3{margin-top:18px}
+  .cards{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:20px}
+}
+@media (max-width:860px){
+  .top .wrap{height:66px}
+  .burger{display:block;z-index:2}
+  .nav{position:fixed;inset:0;flex-direction:column;justify-content:center;gap:28px;background:var(--ink);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+  .nav a{font-size:20px}
+  .nav-open .nav{opacity:1;visibility:visible}
+  .nav-open .top{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--ink)}
+  .brand{position:relative;z-index:2}
+  .hero{padding-top:100px;min-height:auto}
+  .hero .wrap{grid-template-columns:1fr}
+  .trio{height:380px;order:-1;margin-top:10px}
+  .trio a{width:92px}.trio a:nth-of-type(2){width:104px}
+  .trio .tag{display:none}
+  .seal-ring{width:340px;top:46%}
+  .scroll-hint{display:none}
+  .land,.picker,.visit{grid-template-columns:1fr}
+  .cellar{grid-template-columns:1fr}
+  .stage{display:none}
+  .wine .inline-bottle{display:flex;justify-content:center;height:300px;margin:0 0 30px;position:relative}
+  .wine .inline-bottle::before{content:"";position:absolute;width:280px;aspect-ratio:1;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,var(--c),transparent);opacity:.25}
+  .wine .inline-bottle svg{position:relative;height:100%;width:auto}
+  .wine{padding:60px 0}
+  .wine-nav{top:66px}
+  .phead{padding:130px 0 50px}
+  .phead-seal{width:140px;top:90px;opacity:.12}
+}
+/* ---------- ТЕЛЕФОН ---------- */
+html{-webkit-tap-highlight-color:transparent;scroll-padding-top:84px}
+a,button,.chip{touch-action:manipulation}
+.wdots,.mbar{display:none}
+
+/* трака брзих акција (телефон) */
+@media (max-width:860px){
+  /* перформансе: без шума преко целог екрана и без замућења при скроловању */
+  body::before{display:none}
+  .top.solid,.wine-nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(13,12,11,.97)}
+  .mbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:45;display:grid;grid-template-columns:repeat(3,1fr);
+    background:rgba(24,21,19,.97);border:1px solid var(--line-2);border-radius:16px;box-shadow:0 14px 34px rgba(0,0,0,.55);overflow:hidden;
+    transform:translateY(calc(100% + 30px));transition:transform .45s var(--ease)}
+  .mbar.show{transform:none}
+  .nav-open .mbar{transform:translateY(calc(100% + 30px))}
+  .mbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:60px;font:600 10.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--paper-2)}
+  .mbar a+a{border-left:1px solid var(--line)}
+  .mbar a:active{background:var(--ink-3)}
+  .mbar svg{width:21px;height:21px;color:var(--copper-hi)}
+  .shot .mbar{transform:none}
+  .foot{padding-bottom:110px}
+  .nav{gap:10px}
+  .nav a{padding:14px 20px}
+  .lang{margin-top:16px;padding:13px 18px}
+  .burger{margin-right:-10px}
+}
+
+@media (max-width:600px){
+  :root{--gut:18px}
+  .kicker{font-size:11px;letter-spacing:.18em;gap:10px}
+  .kicker::before{width:20px}
+  .lead{font-size:16.5px}
+  .sec{padding:64px 0}
+  .sec-head{margin-bottom:30px}
+  .btn{padding:17px 22px}
+
+  /* херој */
+  .hero{padding:84px 0 44px}
+  .hero .wrap{gap:18px}
+  .trio{height:340px}
+  .trio a{width:86px}.trio a:nth-of-type(2){width:98px}
+  .seal-ring{width:320px}
+  .wordmark{margin:14px 0 18px}
+  .hero .lead{margin-bottom:26px}
+  .hero-ctas{display:grid;grid-template-columns:1fr;gap:10px}
+  .hero-ctas .btn{justify-content:center}
+
+  .passion{padding:70px 0}
+  .passion q{margin:22px auto 14px}
+
+  /* вина као вртешка */
+  .wines{display:flex;max-width:none;gap:14px;margin:0 calc(-1*var(--gut));padding:4px var(--gut) 6px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gut);scrollbar-width:none;overscroll-behavior-x:contain}
+  .wines::-webkit-scrollbar{display:none}
+  .wcard{flex:0 0 80%;display:flex;flex-direction:column;scroll-snap-align:start;padding:22px 20px 22px}
+  .wcard .bottle-mini{height:200px;margin:14px 0 18px}
+  .wcard h3{font-size:30px;margin-top:0}
+  .wcard p{font-size:14.5px}
+  .wdots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+  .wdots i{width:8px;height:8px;border-radius:4px;background:var(--line-2);transition:width .35s var(--ease),background .35s}
+  .wdots i.on{width:24px;background:var(--copper)}
+
+  /* крај */
+  .land{gap:30px}
+  .facts{grid-template-columns:repeat(3,1fr);margin-top:28px}
+  .facts div{padding:18px 8px 0 0}
+  .facts b{font-size:30px}
+  .facts div>span{font-size:12px}
+
+  /* пут боце — компактна листа */
+  .steps{grid-template-columns:1fr;border-top:0}
+  .step{display:grid;grid-template-columns:44px 1fr;column-gap:16px;padding:20px 0;border-top:1px solid var(--line)}
+  .step::before{grid-column:2}
+  .step::after{display:none}
+  .step svg{grid-column:1;grid-row:1/4;width:34px;height:34px;margin:2px 0 0}
+  .step h3{font-size:24px;margin:6px 0 4px}
+  .step p{margin:0;font-size:14.5px}
+
+  .ig{padding:28px 20px}
+  .ig .btn{width:100%;justify-content:center}
+
+  /* подножје */
+  .foot{padding-top:50px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:28px 20px}
+  .foot-grid>div:first-child,.foot-grid>div:last-child{grid-column:1/-1}
+  .foot ul{gap:0}
+  .foot ul a,.foot ul li{display:flex;align-items:center;min-height:42px}
+  .foot-note{flex-direction:column;gap:8px;margin-top:30px}
+
+  /* вина — страница */
+  .phead{padding:110px 0 40px}
+  .wine-nav .wrap{gap:0;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
+  .wine-nav a{padding:17px 14px;scroll-snap-align:start}
+  .wine{padding:44px 0;scroll-margin-top:120px}
+  .wine .inline-bottle{height:250px;margin-bottom:22px}
+  .wine .inline-bottle::before{width:230px}
+  .wine .tagline{margin:20px 0 16px}
+  .blocks{grid-template-columns:1fr;gap:12px;margin-top:28px}
+  .block{padding:20px}
+  .scale{grid-template-columns:100px 1fr;margin-bottom:10px}
+  .photo-card{grid-template-columns:100px 1fr;gap:16px;padding:14px;margin-top:24px}
+  .photo-card figcaption{font-size:17px}
+  .chips{gap:8px}
+  .chip{padding:12px 14px;font-size:14.5px;min-height:46px}
+  .answer{padding:22px 20px;min-height:0}
+  .answer .empty{font-size:20px;padding:30px 0}
+  .ans{grid-template-columns:72px 1fr;gap:16px}
+  .answer .ab{height:160px}
+  .answer h3{font-size:28px}
+
+  /* контакт */
+  .cards{grid-template-columns:1fr;gap:10px}
+  .ccard{display:grid;grid-template-columns:30px 1fr;gap:2px 16px;padding:18px}
+  .ccard svg{grid-row:1/4;width:26px;height:26px;margin:2px 0 0}
+  .ccard p{font-size:20px}
+  .visit{gap:14px;margin-top:14px}
+  .map{min-height:0}
+  .art-map{position:relative;height:300px}
+  .map .pin{position:static;border:0;border-top:1px solid var(--line);line-height:1.8}
+  .form{padding:22px 18px}
+  .form h2{font-size:30px}
+  .route{grid-template-columns:repeat(3,1fr)}
+  .route div{padding:20px 8px 0 0}
+  .route b{font-size:26px}
+  .route span{font-size:12.5px}
+}
+
+/* галерија и фотографије — таблет и телефон */
+@media (max-width:1020px){
+  .gallery{grid-template-columns:repeat(2,1fr);grid-template-rows:none;grid-template-areas:none;grid-auto-rows:300px}
+  .ga,.gb,.gc,.gd,.ge{grid-area:auto}
+  .gb{grid-column:1/-1}
+}
+@media (max-width:600px){
+  .gallery{display:flex;gap:12px;margin:0 calc(-1*var(--gut));padding:0 var(--gut) 4px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gut);scrollbar-width:none;overscroll-behavior-x:contain}
+  .gallery::-webkit-scrollbar{display:none}
+  .g{flex:0 0 78%;height:auto;aspect-ratio:4/5;scroll-snap-align:start}
+  .ga{order:1}.gd{order:2}.gc{order:3}.gb{order:4}.ge{order:5}
+  .g figcaption span{font-size:20px}
+  .wine-photos{grid-template-columns:1fr 1fr;gap:10px}
+  .wine-photos [data-full]{height:210px}
+  .wine-photos figcaption{font-size:12px;margin-top:8px}
+  .lb-x{top:10px;right:10px}
+  .lb p{font-size:17px;padding:0 10px}
+}
+
+/* на додир: без „залепљених“ hover ефеката */
+@media (hover:none){
+  .wcard:hover,a.ccard:hover,.ready .trio a:hover,.trio a:hover{transform:none}
+  .wcard:hover::after{opacity:.16}
+  .wcard:hover .bottle-mini svg{transform:none}
+  .wcard:active,a.ccard:active{border-color:var(--copper)}
+  .btn:hover svg{transform:none}
+  [data-full]:hover img{transform:none}
+}
